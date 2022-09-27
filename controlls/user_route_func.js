@@ -3,6 +3,7 @@ const userdb=require('./user_db')
 module.exports={
     registerPage:(req,res)=>{
         res.render('users/register',{ERR:req.session.ERR})
+        req.session.ERR=""
     },
 
     userInfodb:(req,res)=>{

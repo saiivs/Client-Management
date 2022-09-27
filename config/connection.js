@@ -4,7 +4,7 @@ const state={
     db:null
 }
 module.exports.connect = function(done){
-    const url ='mongodb://localhost:27017'
+    const url =process.env.url
     const dbname='Client_Management_System'
 
     mongoClient.connect(url,(err,data)=>{

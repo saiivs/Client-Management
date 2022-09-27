@@ -27,42 +27,44 @@ module.exports={
                     comment:null
                 }
             ]
-            let Article2=[
+            let Art=[
                 {
                     id:1,
                     status:"Select Status",
-                    try_here:"https://charpstar.se/FullStackTest/Images/4.jpg",
+                    try_here:"https://charpstar.se/FullStackTest/Images/4.jpeg",
                     comment:null
                 },
                 {
                     id:2,
                     status:"Select Status",
-                    try_here:"https://charpstar.se/FullStackTest/Images/5.jpg",
+                    try_here:"https://charpstar.se/FullStackTest/Images/5.jpeg",
                     comment:null
                 },
                 {
                     id:3,
                     status:"Select Status",
-                    try_here:"https://charpstar.se/FullStackTest/Images/6.jpg",
+                    try_here:"https://charpstar.se/FullStackTest/Images/6.jpeg",
                     comment:null
                 }
             ]
             let dataInsert= await db.get().collection(collection.USERINFO).find().toArray()
+            console.log(dataInsert);
             let insert=false;
-            if(dataInsert){
+            if(dataInsert[0]?.email){
+                console.log("enter loop");
                 insert=true;
             }
             userExist=await db.get().collection(collection.USERINFO).findOne({email:userInfo.email,})
             if(!userExist){
                 userInfo.password = await bcrypt.hash(userInfo.password,10)
-                if(insert){
+                if(!insert){
                     userInfo.Article=Article
                     db.get().collection(collection.USERINFO).insertOne(userInfo).then((response)=>{
                         res({exist:false})
                     })
                 }
                 else{
-                    userInfo.Article=Article2
+                    userInfo.Article=Art
                     db.get().collection(collection.USERINFO).insertOne(userInfo).then((response)=>{
                     res({exist:false})
                 })
@@ -81,6 +83,7 @@ module.exports={
                 Exist:true
             }
             let user= await db.get().collection(collection.USERINFO).findOne({email:userData.email})
+            console.log(user);
             if(user){
                 bcrypt.compare(userData.password,user.password).then((verify)=>{
                     if(verify){

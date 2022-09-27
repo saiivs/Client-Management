@@ -1,15 +1,16 @@
 const admindb = require('./admin_db')
+require('dotenv').config()
 
 let admin={
-    email:"admin@gmail.com",
-    pass:"12345678"
+    email:process.env.email,
+    pass:process.env.password
   }
 
 
 module.exports={
 
     AuthAdmin:(req,res)=>{
-        console.log('admin');
+        console.log(admin.email);
         if(admin.email==req.body.email && admin.pass==req.body.password){
             req.session.adminLoged=true;
             res.redirect('/admin/home')
@@ -22,8 +23,6 @@ module.exports={
 
     adminHome:(req,res)=>{
         admindb.clientData().then((data)=>{
-            console.log(data[0].Article);
-            
             for(let i of data){
                 for(let j of i.Article){
                     if(j.status=="Select Status"){
@@ -43,7 +42,8 @@ module.exports={
       },
 
       Logout:(req,res)=>{
-        req.session.adminloged=false;
+        console.log("logoputtt");
+        req.session.adminLoged=false;
         res.redirect('/admin')
       }
 

@@ -2,11 +2,10 @@ var express = require('express');
 var router = express.Router();
 const adminRouter = require('../controlls/admin_route_func')
 
+
+
 // admin credentials
-let admin={
-  email:"admin@gmail.com",
-  pass:"12345678"
-}
+
 
 // middleWare
 
