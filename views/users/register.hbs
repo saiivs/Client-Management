@@ -1,0 +1,184 @@
+<!-- Section: Design Block -->
+<section class="text-center">
+  <!-- Background image -->
+  <div
+    class="p-5 bg-image"
+    style="
+        background-image: url('https://mdbootstrap.com/img/new/textures/full/171.jpg');
+        height: 300px;
+        "
+  ></div>
+  <!-- Background image -->
+
+  <div
+    class="card mx-4 mx-md-5 shadow-5-strong"
+    style="
+        margin-top: -100px;
+        background: hsla(0, 0%, 100%, 0.8);
+        backdrop-filter: blur(30px);
+        "
+  >
+    <div class="card-body py-5 px-md-5">
+
+      <div class="row d-flex justify-content-center">
+        <div class="col-lg-8">
+          <h2 class="fw-bold mb-5">Sign up now</h2>
+
+          <form action="/registerInfo" method="post">
+            <!-- 2 column grid layout with text inputs for the first and last names -->
+            <div class="row">
+              <div class="col-md-6 mb-4">
+                <div class="form-outline">
+                  <input
+                    type="text"
+                    id="First_name"
+                    name="firstName"
+                    onkeyup="first()"
+                    class="form-control"
+                  />
+                  <label class="form-label" for="form3Example1">First name</label>
+                </div>
+                <small
+                  id="ERR_FIRST"
+                  class="text-danger d-flex justify-content-start"
+                ></small>
+              </div>
+              <div class="col-md-6 mb-4">
+                <div class="form-outline">
+                  <input
+                    type="text"
+                    id="lastName"
+                    name="lastName"
+                    onkeyup="last()"
+                    class="form-control"
+                  />
+                  <label class="form-label" for="form3Example2">Last name</label>
+                </div>
+                <small
+                  id="ERR_LAST"
+                  class="text-danger d-flex justify-content-start"
+                ></small>
+              </div>
+            </div>
+
+            <!-- Email input -->
+            <div class="mb-4">
+              <div class="form-outline">
+                <input
+                  type="email"
+                  id="Email"
+                  class="form-control"
+                  name="email"
+                  onkeyup="emailFun()"
+                />
+                <label class="form-label" for="form3Example3">Email address</label>
+              </div>
+              <small
+                id="ERR_EMAIL"
+                class="text-danger d-flex justify-content-start"
+              ></small>
+            </div>
+
+            <!-- Password input -->
+            <div class="mb-4">
+              <div class="form-outline">
+                <input
+                  type="password"
+                  id="pass"
+                  name="password"
+                  class="form-control"
+                  onkeyup="passwrd()"
+                />
+                <label class="form-label" for="form3Example4">Password</label>
+              </div>
+              <small
+                id="ERR_PASS"
+                class="text-danger d-flex justify-content-start"
+              ></small>
+            </div>
+
+            <!-- Submit button -->
+            <button
+              type="submit"
+              onkeypress="final()"
+              class="btn btn-primary btn-block mb-4"
+            >
+              Sign up
+            </button>
+            <small class="d-flex justify-content-start"></small>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Section: Design Block -->
+
+<script>
+    function first(){
+        console.log('erorrrrr')
+        let err_msg= document.getElementById('ERR_FIRST')
+        let first_value=document.getElementById('First_name').value
+        if(first_value==""){
+            err_msg.innerHTML="*Please Fill The Fields"
+            return false;
+        }
+       if(!first_value.match(/^[a-zA-Z]*$/)){
+            err_msg.innerHTML="*Only alphabets are allowed"
+            return false;
+            }
+        err_msg.innerHTML=""
+        return true;
+    }  
+    function last(){
+        console.log('erorrrrr')
+        let err_msg= document.getElementById('ERR_LAST')
+        let first_value=document.getElementById('lastName').value
+        if(first_value==""){
+            err_msg.innerHTML="*Please Fill The Fields"
+            return false;
+        }
+       if(!first_value.match(/^[a-zA-Z]*$/)){
+            err_msg.innerHTML="*Only alphabets are allowed"
+            return false;
+            }
+        err_msg.innerHTML=""
+        return true;
+    }
+    function emailFun(){
+        console.log('erorrrrr')
+        let err_msg= document.getElementById('ERR_EMAIL')
+        let first_value=document.getElementById('Email').value
+        if(first_value==""){
+            err_msg.innerHTML="*Please Fill The Fields"
+            return false;
+        }
+       if(!first_value.match(/^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/)){
+            err_msg.innerHTML="*Please enter valid email"
+            return false;
+        }
+        err_msg.innerHTML=""
+        return true;
+    }    
+     function passwrd(){
+        console.log('erorrrrr')
+        let err_msg= document.getElementById('ERR_PASS')
+        let first_value=document.getElementById('pass').value
+        if(first_value==""){
+            err_msg.innerHTML="*Please Fill The Fields"
+            return false;
+        }
+       if(first_value.length < 8){
+            err_msg.innerHTML="*Password must contain more than 8 characters"
+            return false;
+        }
+        err_msg.innerHTML=""
+        return true;
+    }
+     function final(){
+      if(!first()||!last()||!emailFun()||!passwrd()){
+        return false;
+      }
+      return true;
+    }   
+</script>

@@ -1,0 +1,78 @@
+<style>
+  #headtable1{ font-weight: bolder; font-family: "Irish Grover";
+  font-size:larger; } #headtable2{ font-weight: bolder; 
+  font-family: "Irish Grover"; font-size: larger; } #headtable3{ font-weight: bolder; font-family:
+  "Irish Grover"; font-size: larger; } #headtable4{ font-weight: bolder;
+  font-family:"Irish Grover"; font-size: larger; }
+</style>
+<nav class="navbar bg-primary">
+  <div class="container-fluid">
+    <span class="navbar-brand mb-0 h1 text-white">Welcome {{name}}</span>
+    <a href="/logout" class="btn btn-black bg-white">Log Out</a>
+  </div>
+</nav>
+
+<section class="mt-5">
+  <table class="table table-success table-striped">
+    <thead id="headtable">
+      <tr>
+        <th id="headtable1" scope="col">ARTICLE ID</th>
+        <th id="headtable2" scope="col">TRY HERE</th>
+        <th id="headtable3" scope="col">CURRENT STATUS</th>
+        <th id="headtable4" scope="col">COMMENTS</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      {{#each Array}}
+        <tr>
+          <th scope="row">{{this.id}}</th>
+          <td><a href={{this.try_here}}>Try Here</a>
+          </td>
+          <td><div class="dropdown">
+                  <button class="btn btn-primary dropdown-toggle" type="button" id="c{{this.id}}" data-bs-toggle="dropdown" aria-expanded="false">
+                    {{this.status}}
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="{{this.id}}">
+                    <li><a class="dropdown-item" onclick="StatusYes({{this.id}})" href="#">YES</a></li>
+                    <li><!-- Button trigger modal -->
+                        <button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#a{{this.id}}">
+                          NO
+                        </button>
+
+                        <!-- Modal -->
+                       </li>
+                  </ul>
+              </div>
+          </td>
+          <td><input type="text" id="b{{this.id}}" value="{{this.comment}}" /></td>
+        </tr>
+      {{/each}}
+     
+    </tbody>
+  </table>
+  {{#each Array}}
+   <div class="modal fade" id="a{{this.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Comment here</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                              </div>
+                              <div class="modal-body">
+                                <form>
+                                <div class="mb-3">
+                                  <label for="exampleFormControlTextarea1" class="form-label"></label>
+                                  <textarea class="form-control"  name="comment" id="{{this.id}}" rows="3"></textarea>
+                                </div>
+                                </form>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <a type="button" onclick="comment({{this.id}},'No')" data-bs-dismiss="modal" class="btn btn-primary">submit</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+  {{/each}}
+  </section>

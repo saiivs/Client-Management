@@ -1,0 +1,45 @@
+<style>
+  .tab{ width: 70%; } #First{ font-size: larger; font-weight: bolder; } #second{
+  font-size: larger; font-weight: bolder; } #third{ font-size: larger;
+  font-weight: bolder; }
+</style>
+<nav class="navbar navbar-dark bg-dark" style="box-shadow: 2px 4px 4px;">
+  <div class="container-fluid">
+    <span class="navbar-brand mb-0 h1">Welcome Production Manager</span>
+    <a href="/admin/logOut" class="text-end btn btn-primary">Log Out</a>
+  </div>
+</nav>
+
+<section>
+  <div
+    class="mt-5 container text-center d-flex justify-content-center col-lg-7 border border-dark rounded"
+  >
+    <table class="table tab">
+      <thead>
+        <tr>
+          <th id="First" scope="col">Clients</th>
+          <th id="second" scope="col">Current Status</th>
+          <th id="third" scope="col">Comment</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        {{#each data}}
+          <tr>
+
+            <td>{{this.firstName}}</td>
+
+            <td style="line-height: 2rem;">
+              {{#each this.Article}}
+                ARTICLE ID:{{this.id}}&nbsp;{{this.status}}<br />
+              {{/each}}
+            </td>
+            <td style="line-height: 2rem;">{{#each this.Article}}{{comment}}
+                <br />{{/each}}</td>
+
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</section>

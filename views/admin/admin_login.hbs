@@ -1,0 +1,69 @@
+<section class="container col-lg-6 mt-5">
+    <div class="mb-4 text-center">
+        <h2>Welcome Production Manager</h2>
+    </div>
+    
+  <div >
+    <h4 class="text-center">Login Here</h4>
+    <form action="/admin/loginUSer" method="post">
+      <!-- Email input -->
+      <small class="text-danger" id="ERR_EMAIL"></small>
+      <div class="form-outline mb-4">
+        <input type="email" id="emailValue" name="email" onkeyup="validEmail()" class="form-control" />
+        <label class="form-label" for="form2Example1">Email address</label>
+      </div>
+
+      <!-- Password input -->
+      <small class="text-danger" id="ERR_PASS"></small>
+      <div class="form-outline mb-4">
+        <input type="password" id="pass" name="password" onkeyup="validPass()" class="form-control" />
+        <label class="form-label" for="form2Example2">Password</label>
+      </div>
+
+    
+      <!-- Submit button -->
+      <button type="submit" onclick="return finalValid()" class="btn btn-primary btn-block mb-4">Log in</button>
+
+      <!-- Register buttons -->
+    </form>
+  </div>
+</section>
+
+<script>
+    function validEmail(){
+        let inputValue=document.getElementById('emailValue').value;
+        let err_msg=document.getElementById('ERR_EMAIL');
+        if(inputValue==""){
+             err_msg.innerHTML="*Please fill the fields"
+            return false;
+        }
+        if(!inputValue.match(/^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/)){
+        err_msg.innerHTML="*Please enter a valid email"
+        return false;
+        }
+        err_msg.innerHTML=""
+        return true;
+    }
+
+    function validPass(){
+        let inputValue=document.getElementById('pass').value;
+        let err_msg=document.getElementById('ERR_PASS');
+        if(inputValue==""){
+             err_msg.innerHTML="*Please fill the fields"
+            return false;
+        }
+        if(inputValue.length < 8){
+            err_msg.innerHTML="*Password must be more than 7 characters"
+            return false;
+        }
+        err_msg.innerHTML=""
+        return true;
+    }
+
+    function finalValid(){
+        if(!validEmail()||!validPass()){
+            return false
+        }
+        return true
+    }
+</script>

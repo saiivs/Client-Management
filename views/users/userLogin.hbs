@@ -1,0 +1,98 @@
+<!-- Section: Design Block -->
+<section class="">
+  <!-- Jumbotron -->
+  <div class="px-4 py-5 px-md-5 text-center text-lg-start" style="background-color: hsl(0, 0%, 96%)">
+    <div class="container">
+      <div class="row gx-lg-5 align-items-center">
+        <div class="col-lg-6 mb-5 mb-lg-0">
+          <h1 class="my-5 display-3 fw-bold ls-tight">
+           Client <br />
+            <span class="text-primary">Management System</span>
+          </h1>
+        </div>
+
+        <div class="col-lg-6 mb-5 mb-lg-0">
+          <div class="card">
+            <div class="card-body py-5 px-md-5">
+                <h3>Login Here</h3>
+              <form action="/userAuth" method="post">
+                <!-- 2 column grid layout with text inputs for the first and last names -->
+                
+                <!-- Email input -->
+                <div class="mb-4">
+                     <div class="form-outline ">
+                  <input type="email" id="Email" name="email" onkeyup="emailFun()" class="form-control" />
+                  <label class="form-label" for="form3Example3">Email address</label>
+                  
+                </div>
+                <small class="text-danger" id="ERR_EMAIL"></small>
+                </div>
+               
+                <!-- Password input -->
+                <div class="mb-4">
+                    <div class="form-outline">
+                  <input type="password" id="pass" name="password" onkeyup="passwrd()" class="form-control" />
+                  <label class="form-label" for="form3Example4">Password</label>
+                </div>
+                <small class="text-danger" id="ERR_PASS"></small>
+                </div>
+                <!-- Submit button -->
+                <button type="submit" id="sign up" onkeypress="return final()" class="btn btn-primary btn-block mb-4">
+                  LOGIN 
+                </button>
+                
+                
+                 <a href="/register" class="text-white btn btn-primary btn-block mb-4">signup</a>
+                 
+                 <a href="/admin" class="text-white btn btn-primary btn-block mb-4">Production Managaer</a>
+                 <small class="text-danger">{{ERR}}</small>
+                
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Jumbotron -->
+</section>
+<!-- Section: Design Block -->
+
+<script>
+    function emailFun(){
+        console.log('erorrrrr')
+        let err_msg= document.getElementById('ERR_EMAIL')
+        let first_value=document.getElementById('Email').value
+        if(first_value==""){
+            err_msg.innerHTML="*Please Fill The Fields"
+            return false;
+        }
+       if(!first_value.match(/^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/)){
+            err_msg.innerHTML="*Please enter valid email"
+            return false;
+        }
+        err_msg.innerHTML=""
+        return true;
+    }  
+    function passwrd(){
+        console.log('erorrrrr')
+        let err_msg= document.getElementById('ERR_PASS')
+        let first_value=document.getElementById('pass').value
+        if(first_value==""){
+            err_msg.innerHTML="*Please Fill The Fields"
+            return false;
+        }
+       if(first_value.length < 8){
+            err_msg.innerHTML="*Password must contain more than 8 characters"
+            return false;
+        }
+        err_msg.innerHTML=""
+        return true;
+    } 
+    function final(){
+      if(!emailFun()||!passwrd()){
+        return false;
+      }
+      return true;
+    } 
+</script>
